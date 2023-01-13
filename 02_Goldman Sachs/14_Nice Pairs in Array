@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int rev(int x){
+        int p=0;
+        while(x>0){
+            p=p*10+x%10;
+            x=x/10;
+        }
+        return p;
+    }
+    int countNicePairs(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        int res=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            int temp=nums[i]-rev(nums[i]);
+            mp[temp]++;
+            res=(res+mp[temp]-1)%1000000007;
+        }
+        return res%1000000007;
+    }
+};
